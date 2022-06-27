@@ -12,3 +12,9 @@ The HTML and CSS for the page were provided, as was some of the Javascript requi
 The code I added involved, within the provided function: 1) creating the prompts to collate the user's selections, as well as to give them validation should they fail to give a response within the specified criteria; 2) providing code to randomly generate a text string within the specified length composed of the specified sets of characters.
 The provided Javascript code then would insert the output of the function into the webpages textbox as the randomly generated password.
 ```
+
+##Link to page
+https://lston40.github.io/password-Generator-chal/
+
+##Screenshot
+![lston40 github io_password-Generator-chal_](https://user-images.githubusercontent.com/103286445/176045176-d75c189c-a36c-483e-8519-242748d4a88f.png)
