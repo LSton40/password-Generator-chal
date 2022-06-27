@@ -16,24 +16,33 @@ function generatePassword() {
   var passParameters = '';
   var generatedPassword = '';
 
-//Prompts the user to enter an inclusive number between 8 and 128, with alerts should they enter a number higher or lower than this range. Or lets user cancel out of prompt.
+/*
+Prompts the user to enter an inclusive number between 8 and 128, 
+with alerts should they enter a number higher or lower than this range, 
+or if they enter a string that includes non-numeric characters, 
+and restarts prompt. 
+Or lets user cancel out of prompt.
+*/
   var passwordLength = prompt('Choose a character length of at least 8 characters and no more than 128 characters.')
 
   if (passwordLength === null) {
     return '';
   }
   if (8 > passwordLength) {
-    alert("You must choose a number larger than 8!")
+    alert("You must choose a number larger than 8!");
     return generatePassword();
   }
   if (passwordLength > 128) {
-    alert("You must choose a number smaller than 128!")
+    alert("You must choose a number smaller than 128!");
+    return generatePassword();
+  }
+  if (isNaN(passwordLength)) {
+    alert("I don't think that was a NUMERAL between 8 and 128! Please try again!");
     return generatePassword();
   }
 
-
 //Promps the user to select the types of characters they wish to include in the password and concatenates the selections to the 'passParameters' variable's string value.
-//Alerts the user if they have refused all character types.*
+//Alerts the user if they have refused all character types and gives them the option to either try again or to cancel out of the prompts.
   var lower = confirm('Do you want your password to include lowercase characters?');
   var upper = confirm('Do you want your password to include uppercase characters?');
   var numeric = confirm('Do you want your password to include numbers?');
@@ -65,13 +74,9 @@ function generatePassword() {
 
   //Generates the random string of characters of the types and length selected by the user
   for (var i = 0; i < passwordLength; i++) {
-    var randomization = Math.floor(Math.random() * passParameters.length);
-    var random = passParameters[randomization];
-    generatedPassword = generatedPassword.concat(random)
+    var randomization = passParameters.charAt(Math.floor(Math.random() * passParameters.length));
+    generatedPassword = generatedPassword.concat(randomization)
   }
-
-  // console.log(randomization);
-  // console.log(random);
 
   return generatedPassword
 
@@ -83,7 +88,6 @@ function writePassword() {
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
-
 }
 
 // Add event listener to generate button
